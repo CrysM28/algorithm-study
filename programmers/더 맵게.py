@@ -1,57 +1,23 @@
-    while True:
-        if scv[0] < K:
-            low1 = scv.popleft()
-            low2 = scv.popleft()
-            new_scv = low1 + low2 * 2
-            scv.append(new_scv)
-            mix += 1
-        else:
-            break
-
-
-from collections import deque
 import heapq
 
 def solution(scv, K):
     mix = 0
     heapq.heapify(scv)
     
-    while True:
-        scv = max_heap(scv)
-        print(scv)
+    while len(scv) >= 2:
+        min1 = heapq.heappop(scv)
+        min2 = heapq.heappop(scv)
         
-        # 힙 트리 높이 구하기
-        temp = len(scv)        
-        while temp % 2 != 0:
-            height += 1
-            temp = temp // 2
-
-        # 힙의 마지막 노드만 훑음
-        for i in range(pow(2,height-1), len(scv)):
-            min_vals.append(scv[i])
-        print(min_vals)
-        min1 = min(min_vals)
-        scv.remove(min(min_vals))
-        min_vals.remove(min(min_vals))
-        min2 = min(min_vals)
-        scv.remove(min(min_vals))
-        min_vals.remove(min(min_vals))
-
-        print(min1, min2)
+        if min1 >= K:
+            return mix
         
-        new_val = min1 + min2 * 2
-        scv.append(new_val)
-        
-        print(scv)        
-        scv = max_heap(scv)        
-        print(scv)
-
-        
-        break
-
-    return mix
-
-
-
-
+        new_scv = min1 + min2 * 2
+        heapq.heappush(scv, new_scv)
+        mix += 1
+    
+    if heapq.heappop(scv) >= K:
+        return mix
+    
+    # 위 조건 모두 만족 못하면 답 X
+    return -1
 
