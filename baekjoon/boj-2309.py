@@ -1,36 +1,22 @@
-## 아직 다 안 푼 문제 - 보류
+# 일곱 난쟁이
+## brute-force
 
 import sys
+from itertools import combinations
 
-dwarf_9 = []
-dwarf_7 = []
-total_height = 0
-
-# input
+dwarfs = []
 for i in range(9):
-    dwarf_9.append(int(sys.stdin.readline()))
+    dwarfs.append(int(sys.stdin.readline()))
 
+# 모든 조합을 찾고 합 구하기
+dwarf_comb = list(combinations(dwarfs, 7))
 
-for i in range(9):
-    idx = 0
-
-    for j in range(i, 9):
-        if idx == i or idx == j:
-            print(idx)
-        
-        idx += 1
-
-
-# while total_height != 100:
-#     skip1 = i
-#     skip2 = 8-i
-
-#     for d in dwarf_9:
-#         if 
-#         total_height += d
-#         dwarf_7.append(d)
-#         if total_height == 100:
-#             print(dwarf_7.sort())
-#             break
-#         elif total_height > 100:
-#             total_height = 0
+for d7_list in dwarf_comb:
+    total_height = 0
+    for d in d7_list:
+        total_height += d
+    #print(d7_list, total_height)
+    if total_height == 100:
+        for i in sorted(list(d7_list)):
+            print(i)
+        break   

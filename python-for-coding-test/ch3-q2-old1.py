@@ -1,15 +1,17 @@
 # 큰 수의 법칙
-## 효율 좋게 바꿔보기
-
 n, m, k = map(int, input().split())
 a = list(map(int, input().split()))
-a.sort()
+
+a.sort(reverse=True)
 answer = 0
+counter = k
 
 for i in range(m):
-    if ((i+1) % k) == 0:
-        answer += a[-2]
+    if counter == 0:
+        answer += a[1]
+        counter = k
     else:
-        answer += a[-1]
+        answer += a[0]
+        counter -= 1
 
 print(answer)
