@@ -1,4 +1,4 @@
-# for easy problems
+# 평균은 넘겠지
 
 c = int(input())
 
