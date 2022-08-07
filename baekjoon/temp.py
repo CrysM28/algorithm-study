@@ -1,4 +1,8 @@
 # for easy problems
 
-a, b = input().split()
-print(max(a[::-1], b[::-1]))
+n = int(input())
+nums = []
+for _ in range(n):
+    nums.append(int(input()))
+
+print(*sorted(nums), sep='\n')
