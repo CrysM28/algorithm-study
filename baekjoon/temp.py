@@ -1,20 +1,9 @@
 # for easy problems
 
-x = int(input())
-n = int(input())
-price = []
-num = []
-total = 0
+chess = [1,1,2,2,2,8]
+white = list(map(int, input().split()))
 
-for _ in range(n):
-    a,b=map(int, input().split())
-    price.append(a)
-    num.append(b)
+for i in range(len(white)):
+    chess[i] -= white[i]
 
-for i in range(n):
-    total += price[i]*num[i]
-
-if total == x:
-    print("Yes")
-else:
-    print("No")
+print(chess)
