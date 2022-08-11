@@ -1,4 +1,5 @@
 # 알고리즘 공부
+### Folder Naming
 - baekjoon: [백준](https://www.acmicpc.net/)
 - leetcode: [LeetCode](https://leetcode.com/)
 - programmers: [프로그래머스](https://programmers.co.kr/)
