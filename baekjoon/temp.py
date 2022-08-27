@@ -1,5 +1,11 @@
 # for easy problems
 
-for _ in range(int(input())):
-    s = input()
-    print(s[0], s[-1], sep="")
+n = int(input())
+
+for i in range(1,n):
+    s = "*"*i
+    print(s.rjust(n))
+
+for i in range(n,0,-1):
+    s = "*"*i
+    print(s.rjust(n))
