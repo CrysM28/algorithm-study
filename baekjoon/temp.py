@@ -1,11 +1,7 @@
 # for easy problems
 
-n = int(input())
+from itertools import combinations
 
-for i in range(1,n):
-    s = "*"*i
-    print(s.rjust(n))
-
-for i in range(n,0,-1):
-    s = "*"*i
-    print(s.rjust(n))
+n,m = map(int, input().split())
+a = list(combinations(range(1,n+1),m))
+print(a)
