@@ -1,7 +1,15 @@
 # for easy problems
 
-from itertools import combinations
+n, m = map(int, input().split())
+a, b = [], []
+for _ in range(n):
+    a.append(list(map(int, input().split())))
+for _ in range(n):
+    b.append(list(map(int, input().split())))
 
-n,m = map(int, input().split())
-a = list(combinations(range(1,n+1),m))
-print(a)
+for i in range(n):
+    for j in range(m):
+        a[i][j] += b[i][j]
+
+for aa in a:
+    print(*aa)
