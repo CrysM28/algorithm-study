@@ -1,6 +1,8 @@
 # 11404. 플로이드
+import sys
+input = sys.stdin.readline
 
-INF = int(10e4)  # 최대값
+INF = int(10e9)  # 무한
 
 n = int(input())  # 도시의 개수 (노드)
 m = int(input())  # 버스의 개수 (간선)
