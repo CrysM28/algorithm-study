@@ -1,20 +1,21 @@
-# 입력: 정점, 간선 개수
-V, E = map(int, input().split())
+# 1922. 네트워크 연결
+from collections import defaultdict
 
-# 부모를 자기 자신으로 초기화
-parent = [i for i in range(V + 1)]
+V = int(input())
+E = int(input())
+
+# 부모 초기화
+parent = defaultdict(int)
+for i in range(1, V + 1):
+    parent[i] = i
 
 
-# Find: x의 root 노드 찾기
 def find(x):
     if parent[x] != x:
-        parent[x] = find(parent[x])  # path compression 적용
+        parent[x] = find(parent[x])  # path compression
     return parent[x]
 
-
-# Union: 두 집합을 병합
 def union(a, b):
-    # 각각의 root 노드 찾기
     a = find(a)
     b = find(b)
 
@@ -29,22 +30,17 @@ def union(a, b):
         parent[a] = b
     return False
 
-# union-find.py
-#####################################################
 
-# 입력: 간선 정보
 edges = []
 for _ in range(E):
     a, b, cost = map(int, input().split())
     edges.append((cost, a, b))
-edges.sort()    # 간선 비용 기준 오름차순 정렬
-
+edges.sort() 
 
 total_cost = 0
-
-# 크루스칼
 for edge in edges:
     cost, a, b = edge
+
     # 사이클 발생하지 않으면 MST에 포함
     if not union(a, b):
         total_cost += cost

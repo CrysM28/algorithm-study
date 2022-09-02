@@ -1,12 +1,8 @@
-from collections import defaultdict
-
 # 입력: 정점, 간선 개수
 V, E = map(int, input().split())
 
 # 부모를 자기 자신으로 초기화
-parent = defaultdict(int)
-for i in range(1, V + 1):
-    parent[i] = i
+parent = [i for i in range(V + 1)]
 
 
 # Find: x의 root 노드 찾기

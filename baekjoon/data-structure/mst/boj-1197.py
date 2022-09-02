@@ -1,8 +1,14 @@
+# 1197. 최소 스패닝 트리
+
+from collections import defaultdict
+
 # 입력: 정점, 간선 개수
 V, E = map(int, input().split())
 
 # 부모를 자기 자신으로 초기화
-parent = [i for i in range(V + 1)]
+parent = defaultdict(int)
+for i in range(1, V + 1):
+    parent[i] = i
 
 
 # Find: x의 root 노드 찾기
@@ -29,8 +35,6 @@ def union(a, b):
         parent[a] = b
     return False
 
-# union-find.py
-#####################################################
 
 # 입력: 간선 정보
 edges = []
@@ -41,12 +45,12 @@ edges.sort()    # 간선 비용 기준 오름차순 정렬
 
 
 total_cost = 0
-
-# 크루스칼
 for edge in edges:
     cost, a, b = edge
+    
     # 사이클 발생하지 않으면 MST에 포함
     if not union(a, b):
         total_cost += cost
 
 print(total_cost)
+
