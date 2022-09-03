@@ -1,4 +1,5 @@
 # 1922. 네트워크 연결
+## 크루스칼로 풀이 -> PyPy3: 524 ms
 from collections import defaultdict
 
 V = int(input())

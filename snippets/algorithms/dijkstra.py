@@ -71,7 +71,7 @@ graph = defaultdict(list)
 for _ in range(E):
     u, v, w = map(int, input().split())
     graph[u].append((v, w))
-    # graph[v].append((u, w))     # 무향 그래프일시
+    graph[v].append((u, w))     # 무향 그래프일시
 
 # 출력
 # d1 = dijkstra_list(start)
