@@ -37,6 +37,7 @@ edges = []
 for _ in range(E):
     a, b, cost = map(int, input().split())
     edges.append((cost, a, b))
+    
 edges.sort()    # 간선 비용 기준 오름차순 정렬
 
 
