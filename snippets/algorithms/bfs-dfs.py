@@ -35,11 +35,12 @@ def dfs_iterative():
 
 
 # DFS: 재귀 구현
-def dfs_recursive(v, visited=[]):
+visited = []
+def dfs_recursive(v):
     visited.append(v)
     for w in adj[v]:
         if w not in visited:
-            visited = dfs_recursive(w, visited)
+            dfs_recursive(w)
     return visited
 
 
