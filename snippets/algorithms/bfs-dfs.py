@@ -34,13 +34,26 @@ def dfs_iterative():
     return visited
 
 
-# DFS: 재귀 구현
+# DFS: 재귀 구현 1
 visited = []
 def dfs_recursive(v):
     visited.append(v)
     for w in adj[v]:
         if w not in visited:
             dfs_recursive(w)
+    return visited
+
+
+# DFS: 재귀 구현 2
+def dfs_recursive(v, visited=None):
+    # 함수 재사용을 위해 기본값 인자에 mutable 주지 않기
+    if visited is None:
+        visited = []
+    
+    visited.append(v)
+    for w in adj[v]:
+        if w not in visited:
+            dfs_recursive(w, visited)
     return visited
 
 
