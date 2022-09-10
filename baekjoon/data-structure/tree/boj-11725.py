@@ -1,6 +1,7 @@
 # 11725. 트리의 부모 찾기
 from collections import defaultdict, deque
-
+import sys
+input = sys.stdin.readline
 
 n = int(input())
 tree = defaultdict(list)
@@ -13,14 +14,14 @@ for i in range(n-1):
 
 
 # BFS
-visited = [1]
+visited = set([1])
 queue = deque([1])
 
 while queue:
     v = queue.popleft()
     for w in tree[v]:
         if w not in visited:
-            visited.append(w)
+            visited.add(w)
             queue.append(w)
             parent[w] = v
 
