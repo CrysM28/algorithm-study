@@ -20,16 +20,19 @@ def binary_search_recursive(array, target, start, end):
 
 # 반복
 def binary_search_iterative(array, target):
-    left, right = 0, len(array) - 1
-    while left <= right:
-        mid = left + (right - left) // 2
+    start, end = 0, len(array) - 1
+
+    while start <= end:
+        mid = (start + end) // 2
 
         if array[mid] < target:
-            left = mid + 1
+            start = mid + 1
         elif array[mid] > target:
-            right = mid - 1
+            end = mid - 1
         else:
             return mid
+    
+    # 못 찾음
     return -1
 
 

@@ -1,8 +1,10 @@
 # for easy problems
 
-a = input()
+score = 0
+for _ in range(5):
+    tmp = int(input())
+    if tmp < 40:
+        tmp = 40
+    score += tmp
 
-if a == a[::-1]:
-    print(1)
-else:
-    print(0)
+print(score//5)
