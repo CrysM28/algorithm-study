@@ -20,14 +20,14 @@ def union(a, b):
 
     # 같은 집합이면 사이클 발생
     if a == b:
-        return True
+        return False
 
     # 다른 집합이면 더 작은 쪽을 부모로 설정
     if a < b:
         parent[b] = a
     else:
         parent[a] = b
-    return False
+    return True
 
 # union-find.py
 #####################################################
@@ -44,10 +44,9 @@ edges.sort()    # 간선 비용 기준 오름차순 정렬
 total_cost = 0
 
 # 크루스칼
-for edge in edges:
-    cost, a, b = edge
+for cost, a, b in edges:
     # 사이클 발생하지 않으면 MST에 포함
-    if not union(a, b):
+    if union(a, b):
         total_cost += cost
 
 print(total_cost)
