@@ -1,5 +1,10 @@
 # for easy problems
 
-x = int(input())
+a = '0100'
+b = '10'
 
-print(len(x))
+
+if a> b:
+    print("real")
+else:
+    print("wrong")

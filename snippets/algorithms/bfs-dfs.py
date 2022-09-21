@@ -9,7 +9,7 @@ def bfs():
 
     while queue:
         v = queue.popleft()
-        for w in adj[v]:
+        for w in graph[v]:
             if w not in visited:
                 visited.append(w)
                 queue.append(w)
@@ -28,7 +28,7 @@ def dfs_iterative():
             visited.append(v)
 
             # 작은 번호부터 탐색하려면 인접리스트도 반대로 추가
-            tmp = adj[v]
+            tmp = graph[v]
             while tmp:
                 stack.append(tmp.pop())
 
@@ -42,7 +42,7 @@ def dfs_recursive(v, visited=None):
         visited = []
     
     visited.append(v)
-    for w in adj[v]:
+    for w in graph[v]:
         if w not in visited:
             visited = dfs_recursive(w, visited)
     return visited
@@ -53,13 +53,13 @@ def dfs_recursive(v, visited=None):
 vertex, edge, start_v = map(int, input().split())
 
 # 인접 리스트
-adj = defaultdict(list)
+graph = defaultdict(list)
 for i in range(edge):
     start, end = map(int, input().split())
-    adj[start].append(end)
-    adj[end].append(start)
-for a in adj:
-    adj[a].sort()
+    graph[start].append(end)
+    graph[end].append(start)
+for a in graph:
+    graph[a].sort()
 
 # 탐색
 # search = bfs()
