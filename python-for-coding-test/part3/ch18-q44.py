@@ -1,0 +1,1 @@
+# data-structure\mst\boj-2887.py
