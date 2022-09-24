@@ -1,10 +1,7 @@
 # for easy problems
 
-a = '0100'
-b = '10'
+day = int(input())
+cars = list(map(int, input().split()))
 
 
-if a> b:
-    print("real")
-else:
-    print("wrong")
+print(cars.count(day))
