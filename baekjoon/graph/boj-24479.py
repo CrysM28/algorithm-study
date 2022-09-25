@@ -2,19 +2,9 @@
 
 from collections import defaultdict
 import sys
+import heapq
 
-sys.setrecursionlimit(10**8)
-
-def dfs(v, visited=None):
-    # 함수 재사용을 위해 기본값 인자에 mutable 주지 않기
-    if visited is None:
-        visited = []
-    
-    visited.append(v)
-    for w in graph[v]:
-        if w not in visited:
-            visited = dfs(w, visited)
-    return visited
+input = sys.stdin.readline
 
 vertex, edge, start_v = map(int, input().split())
 
@@ -24,14 +14,27 @@ for i in range(edge):
     start, end = map(int, input().split())
     graph[start].append(end)
     graph[end].append(start)
-for a in graph:
-    graph[a].sort()
 
-result = dfs(start_v)
 
-if len(result) < vertex:
-    for _ in range(vertex-len(result)):
-        result.append(0)
+# dfs
+count = 1
+visited = defaultdict(int)
+stack = [start_v]
 
-for r in result:
-    print(r)
+while stack:
+    v = stack.pop()
+
+    if v not in visited:
+        visited[v] = count
+        count += 1
+
+        tmp = []
+        for g in graph[v]:
+            heapq.heappush(tmp, -g)
+        while tmp:
+            stack.append(-heapq.heappop(tmp))
+
+
+
+for i in range(1,vertex+1):
+    print(visited[i])

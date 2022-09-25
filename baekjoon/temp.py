@@ -1,7 +1,3 @@
 # for easy problems
 
-day = int(input())
-cars = list(map(int, input().split()))
-
-
-print(cars.count(day))
+print("aa" < "b")
