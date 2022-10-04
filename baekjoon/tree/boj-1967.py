@@ -13,14 +13,13 @@ def dfs(v, l):
             dfs(node, l + cost)
 
 
-# 트리의 정점의 개수
 V = int(input())
-
-# 간선 정보 저장
 graph = defaultdict(list)
 for _ in range(V-1):
     a, b, cost = list(map(int, input().split()))
     graph[a].append((b, cost))
+    graph[b].append((a, cost))
+
 
 # DFS 1: 임의의 정점(1)에서 가장 거리가 먼 정점 구하기
 distance = [-1] * (V + 1)

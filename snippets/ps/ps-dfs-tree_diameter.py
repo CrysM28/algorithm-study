@@ -1,7 +1,11 @@
+# 트리의 지름
+from collections import defaultdict
+import sys
 
 # 재귀
+sys.setrecursionlimit(10**9)
 def dfs(v, l):
-    for node, cost in graph[v]:
+    for node, cost in tree[v]:
         if distance[node] == -1:
             distance[node] = l + cost
             dfs(node, l + cost)
@@ -13,12 +17,21 @@ def dfs(start_v):
 
     while stack:
         v, l = stack.pop()
-        for node, cost in graph[v]:
+        for node, cost in tree[v]:
             if distance[node] == -1:
                 stack.append((node, l + cost))
         distance[v] = max(distance[v], l)
     return distance
 
+
+
+# 입력: V개의 정점, tree
+V = int(input())
+tree = defaultdict(list)
+for _ in range(V-1):
+    a, b, cost = list(map(int, input().split()))
+    tree[a].append((b, cost))
+    tree[b].append((a, cost))
 
 # DFS 1: 임의의 정점(1)에서 가장 거리가 먼 정점 구하기
 distance = [-1] * (V + 1)
