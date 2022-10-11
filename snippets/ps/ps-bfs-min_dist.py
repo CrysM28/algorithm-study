@@ -24,6 +24,7 @@ def bfs(i, j):
             nj = v[1] + dj[x]
 
             # 이동할 수 있으면
+            # if 0 <= ni < n and 0 <= nj < m and grid[ni][nj] == EMPTY:
             if ni >= 0 and ni < n and \
                 nj >= 0 and nj < m and \
                 arr[ni][nj] == CAN:
@@ -33,9 +34,10 @@ def bfs(i, j):
 
 # 시작 위치 (1, 1), 끝 위치 (n, m)
 n, m = map(int, input().split())
-arr = []
-for _ in range(n):
-    arr += list(map(int, input())),
+arr = [list(map(int, input())) for _ in range(n)]
+# arr = []
+# for _ in range(n):
+#     arr += list(map(int, input())),
 
 # 좌표 표현은 (1,1)부터지만 배열 입력은 (0,0)부터 받았으므로 -1로 넘기기
 answer = bfs(n - 1, m - 1)
