@@ -1,7 +1,12 @@
 # for easy problems
 
-n, k = map(int, input().split())
-scores = list(map(int, input().split()))
-scores.sort(reverse=True)
+from audioop import avg
 
-print(scores[k])
+
+nums = []
+for i in range(5):
+    nums.append(int(input()))
+nums.sort()
+
+print(sum(nums)//5)
+print(nums[2])
