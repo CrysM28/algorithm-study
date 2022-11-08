@@ -1,12 +1,14 @@
 # for easy problems
 
-from audioop import avg
+while True:
+    a, b = map(int, input().split())
 
+    if a == b == 0:
+        break
 
-nums = []
-for i in range(5):
-    nums.append(int(input()))
-nums.sort()
-
-print(sum(nums)//5)
-print(nums[2])
+    if a >= b and a % b == 0:
+        print("multiple")
+    elif a < b and b % a == 0:
+        print("factor")
+    else:
+        print("neither")
