@@ -1,14 +1,12 @@
 # for easy problems
 
 while True:
-    a, b = map(int, input().split())
-
-    if a == b == 0:
+    a,b,c = input().split()
+    
+    if a == '#' and b==c=='0':
         break
-
-    if a >= b and a % b == 0:
-        print("multiple")
-    elif a < b and b % a == 0:
-        print("factor")
+    if int(b)>=17 or int(c) >=80:
+        print(a, "Senior")
     else:
-        print("neither")
+        print(a, "Junior")
+

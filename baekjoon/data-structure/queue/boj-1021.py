@@ -2,5 +2,7 @@
 
 n, m = map(int, input().split())
 arr = list(map(int, input().split()))
+arr_reverse = arr[::-1]
 
-print(arr)
+
+print(arr, arr_reverse)
