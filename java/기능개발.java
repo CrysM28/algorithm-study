@@ -1,4 +1,4 @@
-package baekjoon.java;
+package java;
 
 public class 기능개발 {
     

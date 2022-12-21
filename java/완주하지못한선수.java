@@ -1,4 +1,4 @@
-package baekjoon.java;
+package java;
 
 import java.util.Arrays;
 
