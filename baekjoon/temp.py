@@ -1,12 +1,12 @@
-# for easy problems
+s, k, h = map(int, input().split())
 
-while True:
-    a,b,c = input().split()
-    
-    if a == '#' and b==c=='0':
-        break
-    if int(b)>=17 or int(c) >=80:
-        print(a, "Senior")
+if (s+k+h >= 100):
+    print("OK")
+else:
+    m = min(s,k,h)
+    if s == m:
+        print("Soongsil")
+    elif k == m:
+        print("Korea")
     else:
-        print(a, "Junior")
-
+        print("Hanyang")
