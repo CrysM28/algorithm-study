@@ -50,7 +50,7 @@ def move_block_down():
                 board[i-1][j] = 0
 
 
-#move_block_left()
-move_block_down()
+move_block_left()
+#move_block_down()
 
 print(*board, sep='\n')

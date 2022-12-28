@@ -1,61 +1,102 @@
 # 12100. 2048 (Easy)
 import copy
 
-def move_block(board, d):
-    global max_num
+def move_block_left(board):
+    for i in range(N):
+        ptr = 0
+        for j in range(1, N):
+            if board[i][j] != 0:
+                tmp = board[i][j]
+                board[i][j] = 0
 
-    di, dj = d
-    range_i, range_j = board_range, board_range
-    if di == 1:
-        range_i = range_i[:-1]
-    elif di == -1:
-        range_i = range_i[::-1]
-        range_i = range_i[:-1]
-    if dj == 1:
-        range_j = range_j[:-1]
-    elif dj == -1:
-        range_j = range_j[::-1]
-        range_j = range_j[:-1]
+                if board[i][ptr] == 0:
+                    board[i][ptr] = tmp
+                elif board[i][ptr] == tmp:
+                    board[i][ptr] *= 2
+                    ptr += 1
+                else:
+                    ptr += 1
+                    board[i][ptr] = tmp
+    return board
+   
+def move_block_right(board):
+    for i in range(N):
+        ptr = N-1
+        for j in range(N-2, -1, -1):
+            if board[i][j] != 0:
+                tmp = board[i][j]
+                board[i][j] = 0
 
-    for i in range_i:
-        for j in range_j:
-            if board[i][j] == 0:
-                board[i][j] = board[i+di][j+dj]
-                board[i+di][j+dj] = 0
-            elif board[i][j] == board[i+di][j+dj]:
-                board[i][j] *= 2
-                if board[i][j] > max_num:
-                    max_num = board[i][j]
-                board[i+di][j+dj] = 0
+                if board[i][ptr] == 0:
+                    board[i][ptr] = tmp
+                elif board[i][ptr] == tmp:
+                    board[i][ptr] *= 2
+                    ptr -= 1
+                else:
+                    ptr -= 1
+                    board[i][ptr] = tmp
+    return board
+
+def move_block_up(board):
+    for j in range(N):
+        ptr = 0
+        for i in range(1, N):
+            if board[i][j] != 0:
+                tmp = board[i][j]
+                board[i][j] = 0
+
+                if board[ptr][j] == 0:
+                    board[ptr][j] = tmp
+                elif board[ptr][j] == tmp:
+                    board[ptr][j] *= 2
+                    ptr += 1
+                else:
+                    ptr += 1
+                    board[ptr][j] = tmp
+    return board
+
+def move_block_down(board):
+    for j in range(N):
+        ptr = N-1
+        for i in range(N-2, -1, -1):
+            if board[i][j] != 0:
+                tmp = board[i][j]
+                board[i][j] = 0
+
+                if board[ptr][j] == 0:
+                    board[ptr][j] = tmp
+                elif board[ptr][j] == tmp:
+                    board[ptr][j] *= 2
+                    ptr -= 1
+                else:
+                    ptr -= 1
+                    board[ptr][j] = tmp
+    return board
+
 
 def play(board, cnt):
-    #print("count", cnt)
-    if cnt == 1:
+    global max_num
+    if cnt == 5:
+        max_num = max(max_num, max(map(max, board)))
         return
     
     for i in range(4):
-        #print("dir", i)
         new_board = copy.deepcopy(board)
-        move_block(new_board, dir[i])
-        play(new_board, cnt+1)
-        print("======== back", cnt, i)
-        print(*new_board, sep='\n')
+        if i == 0:
+            play(move_block_left(new_board), cnt+1)
+        elif i == 1:
+            play(move_block_right(new_board), cnt+1)
+        elif i == 2:
+            play(move_block_up(new_board), cnt+1)
+        else:
+            play(move_block_down(new_board), cnt+1)
 
+    #print(*new_board, sep='\n')
 
-
+max_num = 0
 N = int(input())
 init_board = [list(map(int, input().split())) for _ in range(N)]
 
-# LRUD
-dir = ((0, 1), (0, -1), (1, 0), (-1, 0))
-board_range = list(range(N))
-
-max_num = 0
-for b in init_board:
-    max_num = max(max_num, max(b))
-
 play(init_board, 0)
-
-#print(*init_board, sep='\n')
 
 print(max_num)
