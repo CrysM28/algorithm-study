@@ -1,25 +1,35 @@
+import heapq as h
+
 def solution(jobs):
-    jobs.sort(key = lambda x: x[1])
-    
-    answer = 0
+    n = len(jobs)
+    jobs.sort()
+
+    start = -1
     end = 0
-    for job in jobs:
-        answer += job[1]
-        if end > job[0]:
-            answer += end - job[0]
-        end += job[1]
+    
+    queue = []
+    done = 0
+    total = 0
         
-    return answer // len(jobs)
+    while done < len(jobs):   
+        for job in jobs:
+            request, duration = job
+            if start < request <= end:
+                h.heappush(queue, (duration, request))
+                        
+        if queue:
+            dur, req = h.heappop(queue)
+            start = end
+            end += dur
+            total += end - req
+            done += 1
+        else:
+            end += 1
 
-
-
-
-
-'''
-대충만 봤는데도 생긴게 딱 얼마전에 풀었던 greedy + heap 문제 같다
-
-계속 업데이트를 해줘야 하는 건가?
-
-
-
-'''
+        
+    return (total //n)
+    
+    
+    
+print(solution([[24, 10], [28, 39], [43, 20], [37, 5], [47, 22], [20, 47], [15, 34], [15, 2], [35, 43], [26, 1]]))
+#print(solution([[0, 3], [1, 9], [2, 6]]))
