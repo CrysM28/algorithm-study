@@ -1,12 +1,9 @@
-s, k, h = map(int, input().split())
 
-if (s+k+h >= 100):
-    print("OK")
-else:
-    m = min(s,k,h)
-    if s == m:
-        print("Soongsil")
-    elif k == m:
-        print("Korea")
-    else:
-        print("Hanyang")
+n = int(input())
+st = list(map(int, input().split()))
+ans = []
+
+for i in range(n):
+    ans.insert(len(ans)-st[i], i+1)
+    
+print(*ans)
