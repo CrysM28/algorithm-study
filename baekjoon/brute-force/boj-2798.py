@@ -1,4 +1,4 @@
-# 블랙잭
+# 2798. 블랙잭
 from itertools import combinations
 
 n, m = map(int, input().split())

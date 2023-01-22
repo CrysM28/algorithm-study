@@ -11,7 +11,7 @@ for i in range(min(a, b), 0, -1):
 ## 유클리드 호제법
 ### x % y = r 일 때, GCD(x,y) = GCD(y,r)
 def GCD(x, y):
-    while (x % y != 0):
+    while y != 0:
         x, y = y, x % y
     return x
 
@@ -32,3 +32,4 @@ def LCM(x, y):
 
 ## math 모듈 (3.9 이상)
 math.lcm(a, b)
+

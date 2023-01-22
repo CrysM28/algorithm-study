@@ -32,7 +32,6 @@ for m in m_list:
     print(answer)
 
 
-# 10816과 같은 풀이로 가능할까? -> 가능
 ## set 이용한 풀이: pypy3 240ms
 
 # n = int(input())

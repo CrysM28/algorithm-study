@@ -1,3 +1,5 @@
+# 2231. 분해합
+
 n = input()
 
 def get_ctor():
