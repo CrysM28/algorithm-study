@@ -1,9 +1,5 @@
 
-n = int(input())
-st = list(map(int, input().split()))
-ans = []
-
-for i in range(n):
-    ans.insert(len(ans)-st[i], i+1)
-    
-print(*ans)
+for _ in range(int(input())):
+    a, b = map(int, input().split())
+    res = a**b
+    print(res%10)
