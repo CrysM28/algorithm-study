@@ -2,6 +2,7 @@
 
 ## 그래프 탐색하면서 수 세면 되는 문제
 ## bfs, dfs는 상관 없을 거 같지만 속도가 조금이라도 빠른 bfs로 구현해보자
+### 이 풀이는 DFS 입니다... deque를 썼다고 BFS인 것은 아니거든요...
 
 from collections import deque
 
