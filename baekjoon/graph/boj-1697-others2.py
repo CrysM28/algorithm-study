@@ -1,26 +1,24 @@
-# Python3 - 152 ms
+# 숨바꼭질
+# 출처: https://chancoding.tistory.com/193
 
 from collections import deque
 
-def bfs():
-  qq = deque()
-  qq.append(a)
+N, K = map(int, input().split())
+MAX = 100001
 
-  while qq:
-    v = qq.popleft()
+# q에는 위치만, 시간은 dist 배열로 관리 (visited와 시간 관리를 동시에)
+dist = [0] * MAX
 
-    if v == b:
-      print(line[v])
-      break
+def bfs(v):
+    q = deque([v])
+    while q:
+        v = q.popleft()
+        if v == K:
+            return dist[v]
+        for next_v in (v - 1, v + 1, 2 * v):
+            if 0 <= next_v < MAX and not dist[next_v]:
+                dist[next_v] = dist[v] + 1
+                q.append(next_v)
 
-    for i in (v-1,v+1,v*2):
-      if 0 <= i <= upper and not line[i]:
-        line[i] = line[v] + 1
-        qq.append(i)
-a,b = map(int,input().split())
 
-upper = 10 ** 5     # upper-bound를 100,000으로 잡음 -> 문제에 있는 조건임
-
-line = [0] *(upper+1)
-
-bfs()
+print(bfs(N))
