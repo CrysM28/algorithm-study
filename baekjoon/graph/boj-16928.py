@@ -1,7 +1,7 @@
 # 16928. 뱀과 사다리 게임
 ### BFS로 푸는 거랑 우선순위 큐로 푸는거나 q 뽑는 방식만 다르고 동작은 동일
 
-from collections import defaultdict
+from collections import defaultdict, deque
 import heapq as h
 
 # 사다리 n, 뱀 m
@@ -22,9 +22,11 @@ for _ in range(m):
 visited = defaultdict(bool)
 # (위치, 굴린 주사위 수)
 q = [[0, 1]]
+#q = deque([[1, 0]])
 
 while q:
     dice, pos = h.heappop(q)
+    #pos, dice = q.popleft()
 
     # 도착지점 도착시 
     if pos == 100:

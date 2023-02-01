@@ -49,6 +49,7 @@ def dijkstra_dict(start):
 
         # 현재 노드가 이미 처리된 적이 있으면 무시
         if node not in dist:
+            # 경로 정보 업데이트
             dist[node] = time
             for v, w in graph[node]:
                 alt = time + w

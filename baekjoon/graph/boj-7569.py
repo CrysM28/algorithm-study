@@ -1,4 +1,4 @@
-# 7596. 토마토
+# 7569. 토마토
 import sys
 from collections import deque
 
