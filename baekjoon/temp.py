@@ -1,18 +1,13 @@
 
-i = 1
-while True:
-    n = int(input())
+N, M = map(int, input().split())
+nums = list(map(int, input().split()))
+print(nums)
+ans = 0
 
-    if n == 0:
-        break
+for i in range(1, N+1):
+    for n in nums:
+        if i%n == 0:
+            ans += i
+            break
 
-    songs = []
-    for _ in range(n):
-        songs.append(input())
-
-    songs.sort()
-
-    print(i)
-    print(*songs, sep='\n')
-
-    i += 1
+print(ans)

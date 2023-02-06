@@ -1,49 +1,51 @@
 # 2239. 스도쿠
 
-sudoku = [list(map(int, input())) for _ in range(9)]
-
-def find_square(i, j):
-    
-    sq = j//3 + (i//3)*3 
-    print(sq)
-
-
-def check(i, j):
-    val = sudoku[i][j]
-
-    row = sudoku[i][:j] + sudoku[i][j+1:]
-    if val in row:
+# 행, 열, 3x3 확인
+def check(i, j, num):
+    row = board[i]
+    if num in row:
         return False
     
-    col = []
-    for x in range(9):
-        if x == i: continue
-        col.append(sudoku[x][j])
-    if val in col:
+    col = [board[x][j] for x in range(9)]
+    if num in col:
         return False
 
-    box = []
-    find_square(i, j)
-    if val in box:
-        return False
-    
+    ii, jj = i//3 * 3, j//3 * 3
+    for x in range(ii, ii+3):
+        for y in range(jj, jj+3):
+            if board[x][y] == num:
+                return False
+
     return True
 
 
-def fill(i, j):
-    for t in range(1,9):
-        sudoku[i][j] = t
-        if check(i, j):
-            return
+# 백트래킹
+def fill(cnt):
+    if cnt == len(blank):
+        for b in board:
+            print(*b, sep='')
+        exit(0)
+
+    i, j = blank[cnt]
+
+    for n in range(1,10):
+        if check(i, j, n):
+            board[i][j] = n
+            fill(cnt+1)
+            board[i][j] = 0
 
 
 
-for ii in range(9):
-    for jj in range(9):
-        if sudoku[ii][jj] == 0:
-            fill(ii, jj)
+board = []  # 전체
+blank = []  # 빈 칸 좌표
+
+for i in range(9):
+    data = list(map(int, input()))
+    board.append(data)
+    for j in range(9):
+        if data[j] == 0:
+            blank.append([i, j])
 
 
-#print(check(3, 4))
+fill(0)
 
-print(*sudoku, sep='\n')
