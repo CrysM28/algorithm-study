@@ -1,45 +1,54 @@
 # 11779. 최소비용 구하기 2
 from collections import defaultdict
-from heapq import heappop, heappush
-import sys
-
-INF = sys.maxsize
+import heapq as h
 
 
-def dijkstra(start):
-    dist = defaultdict(int)
-    unvisited = [(0, start)]  
-    discovered = []
+INF = int(1e9)
 
-    while unvisited:
-        time, node = heappop(unvisited)
-        discovered.append(node)
-        
-        if node not in dist:
-            dist[node] = time
-            for v, w in graph[node]:
-                alt = time + w
-                heappush(unvisited, (alt, v))
-                
-
-    if len(dist) != V:
-        for i in range(1, V + 1):
-            if i not in dist:
-                dist[i] = INF
-
-    return dist, discovered
-
-V = int(input())    # 도시 개수
-E = int(input())    # 버스 개수
+n = int(input())
+m = int(input())
 
 graph = defaultdict(list)
-for _ in range(E):
-    u, v, w = map(int, input().split())
-    graph[u].append((v, w))
+for _ in range(m):
+    a, b, c = map(int, input().split())
+    graph[a].append([b, c])
 
+
+## dijkstra
 start, end = map(int, input().split())
 
-dist, discovered = dijkstra(start)
+# start부터의 거리
+dist = [INF] * (n+1)
+dist[start] = 0
 
-print(dist)
-print(discovered)
+# 이전에 방문한 노드
+visited = [INF] * (n+1)
+visited[start] = 0
+
+# (time, node)
+unvisited = [(0, start)]
+
+while unvisited:
+    time, node = h.heappop(unvisited)
+
+    if dist[node] < time:
+        continue
+
+    for v,w in graph[node]:
+        t = time+w
+        if dist[v] > t:
+            dist[v] = t
+            h.heappush(unvisited, (t, v))
+            visited[v] = node
+
+## 역추적
+ans = []
+node = end
+while node != 0:
+    ans.append(node)
+    node = visited[node]
+
+# answers
+print(dist[end])
+print(len(ans))
+print(*ans[::-1])
