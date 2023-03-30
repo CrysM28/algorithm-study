@@ -1,13 +1,17 @@
 
+words = []
+for _ in range(5):
+    words.append(list(input()))
 
-def gcd(x, y):
-    while y != 0:
-        x, y = y, x%y
-    return x
+ans = ''
+for j in range(15):
+    for i in range(5):
+        try:
+            ans += words[i][j]
+        except:
+            continue
 
-def lcm(x, y):
-    return (x*y) // gcd(x,y)
+print(ans)
 
-for _ in range(int(input())):
-    a, b = map(int, input().split())
-    print(lcm(a, b))
+
+#print(words)
