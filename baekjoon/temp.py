@@ -1,17 +1,10 @@
+ans = 0
 
-words = []
-for _ in range(5):
-    words.append(list(input()))
+for i in range(8):
+    line = list(input())
 
-ans = ''
-for j in range(15):
-    for i in range(5):
-        try:
-            ans += words[i][j]
-        except:
-            continue
+    for j in range(8):
+        if (i+j)%2 == 0 and line[j] == 'F':
+            ans += 1
 
 print(ans)
-
-
-#print(words)
