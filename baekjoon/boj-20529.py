@@ -1,6 +1,5 @@
 # 20529. 가장 가까운 세 사람의 심리적 거리
 
-from collections import defaultdict
 import sys
 input = sys.stdin.readline
 
